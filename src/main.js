@@ -75,6 +75,7 @@ app.use("/api", randomApiRouter);
 // inicio el servidor
 
 const tipoInicio = process.argv[2] || 'fork'
+const PORT = parseInt(process.argv[3]) || 8080;
 
 if(tipoInicio == 'cluster'){
   if (cluster.isPrimary) {
@@ -102,7 +103,7 @@ function iniciarServer(){
     if (err) return console.log("error bdd");
     console.log("Base de datos conectada");
 
-    const connectedServer = httpServer.listen(config.PORT, () => {
+    const connectedServer = httpServer.listen(PORT, () => {
       console.log(
         `Servidor http escuchando en el puerto ${
           connectedServer.address().port
